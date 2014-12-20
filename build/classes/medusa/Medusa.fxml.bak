@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane fx:id="root_ancpane" prefHeight="642.0" prefWidth="858.0" xmlns:fx="http://javafx.com/fxml" fx:controller="medusa.MedusaController">
+  <children>
+    <TitledPane id="message_titledpane" animated="false" layoutX="0.0" layoutY="0.0" prefHeight="153.0" text="MESSAGE">
+      <content>
+        <AnchorPane id="Message" fx:id="messageanchorpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <fx:define>
+            <ToggleGroup fx:id="message_toggle_group" />
+          </fx:define>
+          <children>
+            <RadioButton layoutX="9.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleWriteMessageAction" selected="true" text="WRITE MESSAGE" toggleGroup="$message_toggle_group" />
+            <RadioButton layoutX="9.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleMessageLocalDriveAction" text="MESSAGE FROM LOCAL DRIVE" toggleGroup="$message_toggle_group" />
+            <RadioButton layoutX="9.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleMessageWebDriveAction" text="MESSAGE FROM WEB DRIVE" toggleGroup="$message_toggle_group" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="0.0" layoutY="153.0" prefHeight="137.99990000000253" text="CARRIER">
+      <content>
+        <AnchorPane id="Carrier" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <fx:define>
+            <ToggleGroup fx:id="carrier_group" />
+          </fx:define>
+          <children>
+            <RadioButton layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleCarrierLocalDriveAction" text="CARRIER FROM LOCAL DRIVE" toggleGroup="$carrier_group" />
+            <RadioButton layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleCarrierWebDriveAction" text="CARRIER FROM WEB DRIVE" toggleGroup="$carrier_group" />
+            <HBox layoutX="18.0" layoutY="76.0" prefHeight="22.0" prefWidth="165.0">
+              <children>
+                <Text fx:id="CarrierFileSizeText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="202.0" layoutY="0.0" prefHeight="446.0000999999975" prefWidth="456.0" text="MAIN">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="449.9998779296875">
+          <children>
+            <TabPane fx:id="MainTabPane" layoutX="0.0" layoutY="0.0" prefHeight="420.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="main_message_tab" text="MESSAGE">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Pane fx:id="MainLocalMessageTabPane" layoutX="14.0" layoutY="14.0" prefHeight="363.0" prefWidth="420.0" visible="false">
+                          <children>
+                            <Label layoutX="33.0" layoutY="56.0" prefHeight="22.0" prefWidth="176.0" text="File Information:" />
+                            <GridPane layoutX="33.0" layoutY="96.0" prefHeight="144.0" prefWidth="331.0">
+                              <children>
+                                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Text fx:id="MessageNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Extension:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Text fx:id="MessageExtensionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <Text fx:id="MessageTypeText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label prefWidth="84.0" text="Size(In Bytes):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <Text fx:id="MessageSizeText" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Path:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <Text fx:id="MessagePathText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Hashcode:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                <Text fx:id="MessageHashcodeText" scaleX="1.1293398182459855" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="108.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="229.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <Button layoutX="77.0" layoutY="279.0" mnemonicParsing="false" text="OPEN" />
+                            <Button fx:id="MessageOkButton" layoutX="277.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleMessageOkAction" text="OK" />
+                            <HBox id="NowSelectEncryptionType2" layoutX="120.0" layoutY="333.0" prefHeight="22.0" prefWidth="199.99990000000253">
+                              <children>
+                                <Text id="NowSelectEncryptionType" fx:id="NowSelectEncryptionType2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+                              </children>
+                            </HBox>
+                          </children>
+                        </Pane>
+                        <Pane fx:id="MainWriteMessageTabPane" layoutX="13.0" layoutY="13.0" prefHeight="363.0" prefWidth="420.0" visible="true">
+                          <children>
+                            <Label layoutX="17.0" layoutY="20.0" text="Write Your Message:" />
+                            <TextArea fx:id="MessageWriteTextarea" layoutX="17.0" layoutY="36.0" prefHeight="299.0" prefWidth="389.0" wrapText="true" />
+                            <Button fx:id="MessageWriteOkButton" layoutX="353.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleMessageWriteOkAction" text="DONE" />
+                            <HBox layoutX="100.0" layoutY="338.0" prefHeight="22.0" prefWidth="200.0">
+                              <children>
+                                <Text fx:id="NowSelectEncryptionType" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+                              </children>
+                            </HBox>
+                          </children>
+                        </Pane>
+                        <Pane id="MainWriteMessageTabPane" fx:id="MainListMessageTabPane" layoutX="14.0" layoutY="14.0" prefHeight="363.0" prefWidth="420.0" visible="true">
+                          <children>
+                            <GridPane layoutX="-2.0" layoutY="1.0" prefHeight="80.0" prefWidth="421.0">
+                              <children>
+                                <Label text="Medusa Webdrive:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Username:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label text="File Name:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Size:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="Type:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label text="Date:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                <PasswordField id="MessaeWebPasswordField" fx:id="WebMessagePasswordField" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                <TextField fx:id="WebMessageUsernmaeTextfield" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                <Button mnemonicParsing="false" onAction="#handleMessageWebLoginAction" prefWidth="73.0" text="Connect" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                <Text fx:id="WebMessageTabResultText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="3.0" prefWidth="3.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="202.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="74.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="79.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <ListView fx:id="MessageWebFileListview" layoutX="0.0" layoutY="88.0" prefHeight="251.0" prefWidth="420.0" />
+                            <Button fx:id="MessageWebFileSelectButton" layoutX="357.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleMessageWebFileSelectAction" prefWidth="63.0" text="SELECT" />
+                          </children>
+                        </Pane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="main_carrier_tab" text="CARRIER">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Pane id="MainLocalCarrierTabPane" fx:id="MainCarrierTabPane" layoutX="13.0" layoutY="13.0" prefHeight="363.0" prefWidth="420.0">
+                          <children>
+                            <Label layoutX="33.0" layoutY="56.0" prefHeight="22.0" prefWidth="176.0" text="File Information:" />
+                            <GridPane layoutX="33.0" layoutY="96.0" prefHeight="144.0" prefWidth="331.0">
+                              <children>
+                                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Text id="MessageNameText" fx:id="CarrierNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Extension:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Text id="MessageExtensionText" fx:id="CarrierExtensionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <Text id="MessageTypeText" fx:id="CarrierTypeText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label prefWidth="84.0" text="Size(In Bytes):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <Text id="MessageSizeText" fx:id="CarrierSizeText" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Path:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <Text id="MessagePathText" fx:id="CarrierPathText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Hashcode:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                <Text id="MessageHashcodeText" fx:id="CarrierHashcodeText" scaleX="1.1293398182459855" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="108.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="229.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <Button layoutX="130.0" layoutY="279.0" mnemonicParsing="false" text="OPEN" />
+                            <Button fx:id="CarrierFileOKButton" layoutX="249.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleCarrierFileOKButtonAction" text="OK" />
+                            <HBox layoutX="109.0" layoutY="319.0" prefHeight="32.0" prefWidth="200.0">
+                              <children>
+                                <Text fx:id="SelectCarrierText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+                              </children>
+                            </HBox>
+                          </children>
+                        </Pane>
+                        <Pane id="MainWriteMessageTabPane" fx:id="MainCarrierListTabPane" layoutX="25.0" layoutY="23.0" prefHeight="363.0" prefWidth="420.0" visible="true">
+                          <children>
+                            <GridPane layoutX="-2.0" layoutY="1.0" prefHeight="80.0" prefWidth="421.0">
+                              <children>
+                                <Label text="Medusa Webdrive:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Username:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label text="File Name:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Size:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="Type:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label text="Date:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                <PasswordField id="MessaeWebPasswordField" fx:id="CarrierFTPPasswordField" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                <TextField id="WebMessageUsernmaeTextfield" fx:id="CarrierUsernameTextArea" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                <Button fx:id="CarrierFTPConnectButton" mnemonicParsing="false" onAction="#handleCarrierWebLoginAction" prefWidth="73.0" text="Connect" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                <Text id="WebMessageTabResultText" fx:id="CarrierFTPText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="3.0" prefWidth="3.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="202.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="74.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="79.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <ListView id="MessageWebFileListview" fx:id="CarrierFTPListView" layoutX="0.0" layoutY="88.0" prefHeight="251.0" prefWidth="420.0" />
+                            <Button id="MessageWebFileSelectButton" layoutX="357.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleCarrierWebFileSelectAction" prefWidth="63.0" text="SELECT" />
+                          </children>
+                        </Pane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="main_encrypted_tab" text="ENCRYPTION">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Pane fx:id="encryption_pane" layoutX="14.0" layoutY="14.0" prefHeight="361.0" prefWidth="420.0">
+                          <children>
+                            <Label layoutX="55.0" layoutY="49.0" text="Output File:" />
+                            <TextField fx:id="OutputFileTextField" layoutX="131.0" layoutY="46.0" prefWidth="217.0" />
+                            <Button layoutX="161.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleDoEncryptionAction" prefWidth="97.9998779296875" text="Do Encryption" />
+                            <HBox layoutX="117.0" layoutY="188.0" prefHeight="32.0" prefWidth="204.0">
+                              <children>
+                                <Text fx:id="EncryptionMessageText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+                              </children>
+                            </HBox>
+                          </children>
+                        </Pane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="DECRYPTION">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Pane id="DecryptionFileSelectTab" fx:id="DecryptionFileSelectPane" layoutX="14.0" layoutY="7.0" prefHeight="361.0" prefWidth="420.0">
+                          <fx:define>
+                            <ToggleGroup fx:id="decryption_group" />
+                          </fx:define>
+                          <children>
+                            <RadioButton fx:id="FileFromLocalDrive" layoutX="50.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleFileFromLocalDriveAction" text="File From Local Drive" toggleGroup="$decryption_group" />
+                            <RadioButton fx:id="FileFromWebDrive" layoutX="50.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleFileFromWebDriveAction" text="File From Web Drive" toggleGroup="$decryption_group" />
+                            <Label layoutX="236.0" layoutY="17.0" text="Decrypted File Path:" />
+                            <TextField fx:id="DecryptedFilePath" layoutX="236.0" layoutY="37.0" prefWidth="170.0" />
+                            <Button layoutX="108.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleDecryptFileButtonAction" text="DECRYPT" />
+                            <Pane id="MessageTextArea" fx:id="MessageTextAreaPane" layoutX="7.0" layoutY="124.0" prefHeight="223.0" prefWidth="401.0">
+                              <children>
+                                <TextArea id="EncryptedString" fx:id="EncryptedStringText" layoutX="0.0" layoutY="0.0" prefHeight="222.0" prefWidth="399.0" wrapText="true" />
+                              </children>
+                            </Pane>
+                            <Pane fx:id="EncryptedFileInfoPane" layoutX="20.0" layoutY="121.0" prefHeight="221.0" prefWidth="363.0">
+                              <children>
+                                <Button layoutX="79.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleDecryptedMessageOpenAction" prefHeight="22.0" prefWidth="73.0" text="Open" />
+                                <GridPane layoutX="16.0" layoutY="21.0" prefHeight="144.0" prefWidth="331.0">
+                                  <children>
+                                    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                    <Text id="MessageNameText" fx:id="DecryptedFileNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label text="Extension:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                    <Text id="MessageExtensionText" fx:id="DecryptedFileExtensionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                    <Text id="MessageTypeText" fx:id="DecryptedFileTypeText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label prefWidth="84.0" text="Size(In Bytes):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                    <Text id="MessageSizeText" fx:id="DecryptedFileSizeText" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Path:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                    <Text id="MessagePathText" fx:id="DecryptedFilePathText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Hashcode:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                    <Text id="MessageHashcodeText" fx:id="DecryptedFileHashcodeText" scaleX="1.1293398182459855" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="108.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="229.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                              </children>
+                            </Pane>
+                          </children>
+                        </Pane>
+                        <Pane id="MainWriteMessageTabPane" fx:id="DecryptionWebLoginPane" layoutX="13.0" layoutY="13.0" prefHeight="363.0" prefWidth="420.0" visible="true">
+                          <children>
+                            <GridPane layoutX="-2.0" layoutY="1.0" prefHeight="80.0" prefWidth="421.0">
+                              <children>
+                                <Label prefWidth="182.0" text="                       Medusa Webdrive:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Username:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label text="File Name:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Size:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="Type:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label text="Date:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                <PasswordField id="MessaeWebPasswordField" fx:id="DecryptionPasswordField" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                <TextField id="WebMessageUsernmaeTextfield" fx:id="DecyptionUsernameTextfield" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                <Button id="CarrierFTPConnectButton" mnemonicParsing="false" onAction="#handleDecryptionWebLoginAction" prefWidth="73.0" text="Connect" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                <Text id="WebMessageTabResultText" fx:id="DecryptionLoginAlertText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="3.0" prefWidth="3.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="202.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="74.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="79.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <Button layoutX="1.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back" />
+                            <ListView id="MessageWebFileListview" fx:id="DecryptionListView" layoutX="1.0" layoutY="88.0" prefHeight="251.0" prefWidth="420.0" />
+                            <Button id="MessageWebFileSelectButton" layoutX="328.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleDecryptionWebFileSelectAction" prefWidth="92.0" text="DECRYPT" />
+                          </children>
+                        </Pane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="654.0" layoutY="0.0" prefHeight="340.0" text="SEND">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+            <TabPane layoutX="-2.0" layoutY="0.0" prefHeight="314.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="send_ftp_tab" text="FTP">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="188.0">
+                      <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefWidth="59.0" text="Hostname:" />
+                        <TextField id="send_ftp_hostname_textfield" fx:id="hostname_textfield" layoutX="72.0" layoutY="14.0" prefWidth="117.0" />
+                        <ChoiceBox fx:id="ChoiceBox" layoutX="113.0" layoutY="40.0">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="FTP" />
+                              <String fx:value="SFTP" />
+                              <String fx:value="FTPS" />
+                            </FXCollections>
+                          </items>
+                        </ChoiceBox>
+                        <Label layoutX="14.0" layoutY="45.0" text="Connection Type:" />
+                        <Label layoutX="16.0" layoutY="76.0" text="Port:" />
+                        <TextField fx:id="port_textfield" layoutX="47.0" layoutY="73.0" prefWidth="59.0" />
+                        <Label layoutX="16.0" layoutY="112.0" text="Username:" />
+                        <Label layoutX="18.0" layoutY="137.0" text="Password:" />
+                        <TextField fx:id="ftp_username_textfield" layoutX="77.0" layoutY="109.0" prefWidth="101.0" />
+                        <Label layoutX="19.0" layoutY="169.0" text="Directory:" />
+                        <TextField id="ftp_timeout_textfield" fx:id="DirectoryTextfield" layoutX="73.0" layoutY="169.0" prefWidth="101.0" />
+                        <Button layoutX="16.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleSendFTPAction" text="SEND" />
+                        <PasswordField fx:id="ftp_passwordfield" layoutX="77.0" layoutY="134.0" prefWidth="101.0" />
+                        <HBox id="FTPUploadMessage" layoutX="41.0" layoutY="250.0" prefHeight="22.0" prefWidth="127.0001220703125">
+                          <children>
+                            <Text fx:id="FTPMessageText" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                          </children>
+                        </HBox>
+                        <Label layoutX="16.0" layoutY="191.0" text="Directory Remote:" />
+                        <TextField fx:id="DirectoryRemoteTextfield" layoutX="14.0" layoutY="207.0" prefWidth="170.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="send_email_tab" text="E-Mail">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Label layoutX="14.0" layoutY="35.0" text="E-Mail ID:" />
+                        <TextField layoutX="15.0" layoutY="60.0" prefWidth="170.0001220703125" />
+                        <Button layoutX="16.0" layoutY="100.0" mnemonicParsing="false" text="SEND" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="654.0" layoutY="338.0" minWidth="200.0" prefHeight="106.0" prefWidth="200.0" text="SAVE">
+      <content>
+        <AnchorPane id="Save" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <fx:define>
+            <ToggleGroup fx:id="save_group" />
+          </fx:define>
+          <children>
+            <GridPane layoutX="0.0" layoutY="-5.0">
+              <children>
+                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="SaveUsername" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <PasswordField fx:id="SavePassword" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button mnemonicParsing="false" onAction="#handleSaveWebdriveAction" text="SAVE  WEBDRIVE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="87.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="113.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="204.0" layoutY="444.0" prefHeight="197.0" prefWidth="651.9999000000025" text="PROCESS">
+      <content>
+        <AnchorPane id="Process" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+            <WebView layoutX="14.0" layoutY="14.0" prefHeight="138.0" prefWidth="618.0" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="0.0" layoutY="291.0" prefHeight="349.9999000000025" prefWidth="206.0" text="STEGANOGRAPHY">
+      <content>
+        <AnchorPane id="Steganography" fx:id="CryptographyAncPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <fx:define>
+            <ToggleGroup fx:id="stegano_group" />
+          </fx:define>
+          <children>
+            <RadioButton id="SteganoWERButton" fx:id="SteganoWERbutton" layoutX="15.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleWithoutEncyptionAction" prefHeight="49.0" text="HIDE IT WITHOUT ANY &#10;PRE ECRYPTION" toggleGroup="$stegano_group" />
+            <RadioButton fx:id="SteganoAPERbutton" layoutX="15.0" layoutY="93.0" mnemonicParsing="false" onAction="#handleAESEncryptioAction" text="HIDE IT AFTER &#10;AES ENCRYPTION" toggleGroup="$stegano_group" />
+            <RadioButton fx:id="SteganoAHRbutton" layoutX="13.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleHashingAction" text="HIDE IT AFTER &#10;BASE64ENCODER&#10;" toggleGroup="$stegano_group" />
+            <HBox layoutX="12.0" layoutY="274.0" prefHeight="28.0" prefWidth="170.0">
+              <children>
+                <Text fx:id="FileTypeMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="" styleClass="text" text="" />
+              </children>
+            </HBox>
+            <Pane fx:id="EncDecPasswordPane" layoutX="7.0" layoutY="174.0" prefHeight="106.0" prefWidth="183.0">
+              <children>
+                <Label layoutX="23.0" layoutY="15.0" text="Enter Password for Encryption::" />
+                <PasswordField fx:id="EncDecPasswordField" layoutX="23.0" layoutY="29.0" prefWidth="146.0" />
+                <Button layoutX="25.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleEncDecAction" text="OK" />
+              </children>
+            </Pane>
+            <Pane id="EncDecPasswordPane" fx:id="DecEncPassowrdPane" layoutX="17.0" layoutY="184.0" prefHeight="106.0" prefWidth="183.0">
+              <children>
+                <Label layoutX="23.0" layoutY="15.0" text="Enter Password for Decryption:" />
+                <PasswordField id="EncDecPasswordField" fx:id="DecEncPasswordField" layoutX="23.0" layoutY="29.0" prefWidth="146.0" />
+                <Button layoutX="25.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleDecEncAction" text="OK" />
+              </children>
+            </Pane>
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+  </children>
+  <stylesheets>
+    <URL value="@medusacss.css" />
+  </stylesheets>
+</AnchorPane>

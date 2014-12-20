@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="medusa.jnlp">
+  <information>
+    <title>medusa</title>
+    <vendor>Hp</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib/chilkat.jar" size="275405" download="eager" />
+    <jar href="lib/commons-net-3.2.jar" size="295290" download="eager" />
+    <jar href="lib/guava-14.0-rc3.jar" size="2333763" download="eager" />
+    <jar href="medusa.jar" size="118572" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="medusa" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="medusa.Medusa"  name="medusa" />
+  <update check="always"/>
+</jnlp>

@@ -1,0 +1,126 @@
+/* 
+    Document   : medusacss
+    Created on : 26 Feb, 2013, 3:25:42 PM
+    Author     : Hp
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+    Document   : Login_css
+    Created on : 17 Feb, 2013, 8:33:37 PM
+    Author     : Hp
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.root { 
+    -fx-background-image: url("background.jpg");
+}
+
+.text{
+     -fx-text-fill: red;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+     -fx-background-color: red;
+    
+}
+#TextAreaProcess{
+     -fx-background-color: honeydew;
+     -fx-text-fill: tomato;
+     
+}
+
+
+.choiceBox{
+     -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.6) , 5,0.0,0,1);
+}
+
+
+.Text{
+    -fx-text-fill: red;
+    -fx-background-color: skyblue;
+    
+}
+.choiceBox
+{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+.label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-test-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255, 255, 255, 0.5) , 0,0,0,1);
+}
+.anchorPane{
+   -fx-background-image: url("background.jpg"); 
+}
+#Message{
+    -fx-background-image: url("background.jpg"); 
+}
+#Carrier{
+    -fx-background-image: url("background.jpg");
+}
+#Steganography
+{
+     -fx-background-image: url("background.jpg");
+}
+#Process
+{
+    -fx-background-image: url("background.jpg");
+}
+#Save
+{
+    -fx-background-image: url("background.jpg");
+}
+#Content
+{
+    -fx-background-image: url("background.jpg");
+}
+#MessageWebFileListview
+{
+    -fx-background-image: url("background.jpg");
+}
+.pane{
+    -fx-background-image: url("background.jpg");
+}
+.listView{
+   -fx-background-color:#2A5058;
+}
+.textArea{
+    -fx-background-color:#2A5058;
+}
+.textField{
+    -fx-background-color:#2A5058;
+}
+.text {
+    -fx-fill:#333333;
+    
+}
+.titledPane{
+    -fx-background-color:#2A5058;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.6) , 5,0.0,0,1);
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+.radioButton{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.6) , 5,0.0,0,1);
+}
+.radioButton:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
